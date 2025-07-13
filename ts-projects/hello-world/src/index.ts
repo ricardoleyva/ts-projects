@@ -212,8 +212,10 @@ let user = getUser();
 console.log(user && user.address ? user.address.street : undefined);
 console.log(user?.address?.street);
 
-function bar(){
-
-}
-let foo = ()=>void;
-let x = foo !== null && foo !== undefined ? foo: bar(); 
+// let x = foo !== null && foo !== undefined ? foo: bar();
+// let x = foo ?? bar();
+//  //E
+// let value: unknown = 'a';
+// console.log(value.toUpperCase());
+let value: unknown = "a";
+if (typeof value === "string") console.log(value.toUpperCase());

@@ -1,5 +1,5 @@
 "use strict";
-var _a;
+var _a, _b;
 let employee = {
     id: 1,
     name: "",
@@ -53,6 +53,7 @@ let user2 = {
     name: "Kate Muller",
     age: 28,
 };
+let day = "Monday";
 function getUser() {
     let data = {
         address: { street: undefined },
@@ -61,4 +62,8 @@ function getUser() {
 }
 let user = getUser();
 console.log(user && user.address ? user.address.street : undefined);
+console.log((_b = user === null || user === void 0 ? void 0 : user.address) === null || _b === void 0 ? void 0 : _b.street);
+let value = "a";
+if (typeof value === "string")
+    console.log(value.toUpperCase());
 //# sourceMappingURL=index.js.map
