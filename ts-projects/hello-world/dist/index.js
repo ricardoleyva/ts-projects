@@ -1,69 +1,112 @@
 "use strict";
-var _a, _b;
-let employee = {
-    id: 1,
-    name: "",
-    retire: (date) => {
-        console.log(date);
-    },
-};
-function kgToLbs(weight) {
-    if (typeof weight === "number")
-        return weight * 2.2;
-    else
-        return parseInt(weight) * 2.2;
-}
-kgToLbs(10);
-kgToLbs("10kg");
-let textBox = {
-    drag() { },
-    resize() { },
-};
-function greet(name) {
-    if (name)
-        console.log(name.toUpperCase());
-    else
-        console.log("Hola");
-}
-greet("hello world");
-greet(null);
-greet(undefined);
-function getCustomer(id) {
-    return id === 0 ? null : { birthday: new Date() };
-}
-let log = null;
-log === null || log === void 0 ? void 0 : log("a");
-let customer = getCustomer(1);
-console.log((_a = customer === null || customer === void 0 ? void 0 : customer.birthday) === null || _a === void 0 ? void 0 : _a.getFullYear());
-let speed = null;
-let ride = {
-    speed: speed !== null && speed !== void 0 ? speed : 30,
-};
-function render(document) {
-    if (typeof document === "string") {
-        document.toUpperCase();
+class Account {
+    constructor(id, owner, _balance) {
+        this.id = id;
+        this.owner = owner;
+        this._balance = _balance;
+    }
+    deposit(amount) {
+        if (amount <= 0)
+            throw new Error("Invalid amount");
+        this._balance += amount;
+    }
+    get balance() {
+        return this._balance;
+    }
+    set balance(value) {
+        if (value <= 0) {
+            throw new Error("Invalid value");
+        }
+        this._balance = value;
     }
 }
-let user1 = {
-    name: "John Smith",
-    age: 30,
-    occupation: "Software Engineer",
-};
-let user2 = {
-    name: "Kate Muller",
-    age: 28,
-};
-let day = "Monday";
-function getUser() {
-    let data = {
-        address: { street: undefined },
-    };
-    return data;
+class SeatAssignment {
 }
-let user = getUser();
-console.log(user && user.address ? user.address.street : undefined);
-console.log((_b = user === null || user === void 0 ? void 0 : user.address) === null || _b === void 0 ? void 0 : _b.street);
-let value = "a";
-if (typeof value === "string")
-    console.log(value.toUpperCase());
+let seats = new SeatAssignment();
+seats.A1 = "Ric";
+seats["A2"] = "Rico";
+let account = new Account(1, "Ric", 100000);
+console.log(account.balance);
+account.deposit(110009);
+console.log(account.balance);
+account.balance = 10;
+console.log(account.balance);
+console.log(account);
+console.log(typeof account);
+console.log(account instanceof Account);
+class Ride {
+    start() {
+        Ride._activeRides++;
+    }
+    stop() {
+        Ride._activeRides--;
+    }
+    static get activeRides() {
+        return Ride._activeRides;
+    }
+}
+Ride._activeRides = 0;
+let ride1 = new Ride();
+ride1.start();
+let ride2 = new Ride();
+ride2.start();
+console.log(Ride.activeRides);
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+    walk() {
+        console.log("Walking...");
+    }
+}
+class Student extends Person {
+    constructor(studentID, firstName, lastName) {
+        super(firstName, lastName);
+        this.studentID = studentID;
+    }
+    takeTest() {
+        this.walk();
+        console.log("Taking a test...");
+    }
+}
+let student = new Student(1, "Ricardo", "Leyva");
+class Teacher extends Person {
+    get fullName() {
+        return "Professor " + super.fullName;
+    }
+}
+class Principal extends Person {
+    get fullName() {
+        return "Principal " + super.fullName;
+    }
+}
+let teacher = new Teacher("John", "Smith");
+console.log(teacher.fullName);
+printNames([
+    new Student(2, "Ric", "Leyva"),
+    new Teacher("John", "Soprano"),
+    new Principal("Mary", "Ellis"),
+]);
+function printNames(people) {
+    for (let person of people)
+        console.log(person.fullName);
+}
+class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    constructor(radius, color) {
+        super(color);
+        this.radius = radius;
+    }
+    render() {
+        console.log("Rendering a circle");
+    }
+}
 //# sourceMappingURL=index.js.map
